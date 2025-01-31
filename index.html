@@ -23,19 +23,19 @@
         //   END:VEVENT
         //   END:VCALENDAR`;
 
-        const ICAL_CONTENT = `BEGIN:VCALENDAR
-            VERSION:2.0
-            PRODID:-//Your Organization//Your Product//EN
-            BEGIN:VEVENT
-            UID:uid1@example.com
-            DTSTAMP:20231010T090000Z
-            DTSTART:20231010T090000Z
-            DTEND:20231010T100000Z
-            SUMMARY:Sample Event
-            DESCRIPTION:This is a sample event description.
-            LOCATION:Wonderland
-            END:VEVENT
-            END:VCALENDAR`.trim();
+const ICAL_CONTENT = `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Your Organization//Your Product//EN
+BEGIN:VEVENT
+UID:uid1@example.com
+DTSTAMP:20231010T090000Z
+DTSTART:20231010T090000Z
+DTEND:20231010T100000Z
+SUMMARY:Sample Event
+DESCRIPTION:This is a sample event description.
+LOCATION:Wonderland
+END:VEVENT
+END:VCALENDAR`.trim();
 
         const blob = new Blob([ICAL_CONTENT], {type: "text/calendar;charset=utf-8"});
         const blobUrl = URL.createObjectURL(blob);

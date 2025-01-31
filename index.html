@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function createIcalBlobUrl(eventDetails) {
+        const icalContent = `
+          BEGIN:VCALENDAR
+          VERSION:2.0
+          PRODID:-//Your Organization//Your Product//EN
+          BEGIN:VEVENT
+          UID:${eventDetails.uid}
+          DTSTAMP:${eventDetails.timestamp}
+          DTSTART:${eventDetails.start}
+          DTEND:${eventDetails.end}
+          SUMMARY:${eventDetails.summary}
+          DESCRIPTION:${eventDetails.description}
+          LOCATION:${eventDetails.location}
+          END:VEVENT
+          END:VCALENDAR`;
+
+        const blob = new Blob([icalContent], {
+          type: "text/calendar;charset=utf-8",
+        });
+
+        const blobUrl = URL.createObjectURL(blob);
+        return blobUrl;
+      }
+
+      const eventDetails = {
+        uid: "uid1@example.com",
+        timestamp:
+          new Date().toISOString().replace(/[-:]/g, "").split(".")[0] + "Z",
+        start: "20231010T090000Z",
+        end: "20231010T100000Z",
+        summary: "Sample Event",
+        description: "This is a sample event description.",
+        location: "Sample Location",
+      };
+
+      const icalBlobUrl = createIcalBlobUrl(eventDetails);
+      console.log("Blob URL:", icalBlobUrl);
+
+      const downloadLink = document.createElement("a");
+      downloadLink.href = icalBlobUrl;
+      downloadLink.textContent = "Download iCal File";
+      document.body.appendChild(downloadLink);
+    </script>
+  </body>
+</html>

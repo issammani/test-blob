@@ -23,48 +23,28 @@
         //   LOCATION:${eventDetails.location}
         //   END:VEVENT
         //   END:VCALENDAR`;
-        
-const icalContent = `
-BEGIN:VCALENDAR
-VERSION:2.0
-PRODID:-//Your Organization//Your Product//EN
-BEGIN:VEVENT
-UID:uid1@example.com
-DTSTAMP:20250131T003432Z
-DTSTART:20231010T090000Z
-DTEND:20231010T100000Z
-SUMMARY:Sample Event
-DESCRIPTION:This is a sample event description.
-LOCATION:Sample Location
-END:VEVENT
-END:VCALENDAR`.trim();
 
-        const blob = new Blob([icalContent], {
-          type: "text/calendar;charset=utf-8",
-        });
+        const ICAL_CONTENT = `BEGIN:VCALENDAR
+            VERSION:2.0
+            PRODID:-//Your Organization//Your Product//EN
+            BEGIN:VEVENT
+            UID:uid1@example.com
+            DTSTAMP:20231010T090000Z
+            DTSTART:20231010T090000Z
+            DTEND:20231010T100000Z
+            SUMMARY:Sample Event
+            DESCRIPTION:This is a sample event description.
+            LOCATION:Wonderland
+            END:VEVENT
+            END:VCALENDAR`.trim();
 
+        const blob = new Blob([ICAL_CONTENT], {type: "text/calendar;charset=utf-8"});
         const blobUrl = URL.createObjectURL(blob);
-        return blobUrl;
-      }
 
-      const eventDetails = {
-        uid: "uid1@example.com",
-        timestamp:
-          new Date().toISOString().replace(/[-:]/g, "").split(".")[0] + "Z",
-        start: "20231010T090000Z",
-        end: "20231010T100000Z",
-        summary: "Sample Event",
-        description: "This is a sample event description.",
-        location: "Sample Location",
-      };
-
-      const icalBlobUrl = createIcalBlobUrl(eventDetails);
-      console.log("Blob URL:", icalBlobUrl);
-
-      const downloadLink = document.createElement("a");
-      downloadLink.href = icalBlobUrl;
-      downloadLink.textContent = "Download iCal File";
-      document.body.appendChild(downloadLink);
+        const downloadLink = document.createElement("a");
+        downloadLink.href = blobUrl;
+        downloadLink.textContent = "Download iCal File";
+        document.body.appendChild(downloadLink);
     </script>
   </body>
 </html>

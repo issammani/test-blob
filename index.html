@@ -1,7 +1,7 @@
   <a href="https://httpbin.org/robots.txt">Raw URL</a><br>
   <a href="https://httpbin.org/robots.txt" download="robots.txt">Raw URL (download)</a><br>
-  <a href="blob:https://httpbin.org/robots.txt" id="blob"></a><br>
-  <a href="blob:https://httpbin.org/robots.txt" id="blobDownload" download="robots.txt"></a>
+  <a href="blob:https://httpbin.org/robots.txt" id="blobLink"></a><br>
+  <a href="blob:https://httpbin.org/robots.txt" id="blobLinkDownload" download="robots.txt"></a>
 
 
 
@@ -11,12 +11,12 @@
       .then(blob => {
         const url = URL.createObjectURL(blob);
 
-        blob.href = url;
-        blob.textContent = 'Blob URL';
+        blobLink.href = url;
+        blobLink.textContent = 'Blob URL';
         
-        blobDownload.href = url;
-        blobDownload.download = 'robots.txt';
-        blobDownload.textContent = 'Blob URL (download)';
+        blobLinkDownload.href = url;
+        blobLinkDownload.download = 'robots.txt';
+        blobLinkDownload.textContent = 'Blob URL (download)';
       })
       .catch(err => console.error('Error loading blob:', err));
 </script>
